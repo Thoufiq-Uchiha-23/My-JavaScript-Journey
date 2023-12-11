@@ -16,7 +16,7 @@ console.log(this);
 // function chai(){
 //     let username = "thoufiq"
 //     console.log(this.username);//undefined
-//     //Reason: cause this function only work on objects not on function
+//     //Reason: cause "this" function only work on objects not on function
 // }
 
 // chai()
