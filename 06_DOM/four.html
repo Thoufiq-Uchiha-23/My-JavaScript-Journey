@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chai aur Code | DOMain expansion</title>
+</head>
+<body style="background-color: #212121; color: white;">
+    <ul class="language">
+        <li>Javascript</li>
+    </ul>
+</body>
+<script>
+    function addLanguage(langName){
+        // to create element
+        const li = document.createElement('li')
+        // to pass parameter to html element
+        li.innerHTML = `${langName}`;
+        // to select the element from HTMl Doc, and add it using "appendChild"
+        document.querySelector('.language').appendChild(li)
+    }
+    addLanguage("python")
+    addLanguage("typescript")
+
+    // Optimized approach used by Big developers
+    function addOptiLanguage(langName){
+        const li = document.createElement('li');
+        // to append child to nodelist(tree of html doc), and create one named as "langName"
+        li.appendChild(document.createTextNode(langName));
+        // to select the element from HTMl Doc, and add it using "appendChild"
+        document.querySelector('.language').appendChild(li);
+    }
+    addOptiLanguage("React JS")
+
+    // Edit
+    const secondLang = document.querySelector("li:nth-child(2)")
+    const newli = document.createElement('li')
+    newli.textContent = "Mojo"
+    secondLang.replaceWith(newli);
+
+    // Edit 2
+    const firstLang = document.querySelector("li:first-child")
+    firstLang.outerHTML = "<li>Typescript</li>"
+
+    // Remove Element
+    const lastLang = document.querySelector('li:last-child')
+    lastLang.remove()
+</script>
+</html>
