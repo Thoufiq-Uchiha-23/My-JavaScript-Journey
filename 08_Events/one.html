@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Events</title>
+</head>
+<style>
+    body{
+        background-color: darkgray;
+        color: white;
+    }
+    h2{
+        text-align: center;
+        font-size: 25px;
+        color: aliceblue;
+    }
+    #images{
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+</style>
+<body>
+    <h2>Amazing Image</h2>
+    <div>
+        <ul id="images">
+            <li>
+                <img src="https://images.pexels.com/photos/1545743/pexels-photo-1545743.jpeg?auto=compress&cs=tinysrgb&w=400" width="200px" alt="" id="red-car">
+            </li>
+            <li>
+                <img src="https://images.pexels.com/photos/39855/lamborghini-brno-racing-car-automobiles-39855.jpeg?auto=compress&cs=tinysrgb&w=400" width="200px" id="yellow-lamborghini" alt="">
+            </li>
+            <li>
+                <img src="https://images.pexels.com/photos/116675/pexels-photo-116675.jpeg?auto=compress&cs=tinysrgb&w=400" width="200px" alt="" id="range-rover">
+            </li>
+            <li>
+                <img src="https://images.pexels.com/photos/3311574/pexels-photo-3311574.jpeg?auto=compress&cs=tinysrgb&w=400" width="200px" alt="" id="chevrolet">
+            </li>
+            <li>
+                <img src="https://images.pexels.com/photos/544542/pexels-photo-544542.jpeg?auto=compress&cs=tinysrgb&w=400" width="200px" alt="" id="ferrari">
+            </li>
+            <li>
+                <img src="https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=400" width="200px" alt="" id="bmw">
+            </li>
+            <li>
+                <img src="https://images.pexels.com/photos/120049/pexels-photo-120049.jpeg?auto=compress&cs=tinysrgb&w=400" width="200px" alt="" id="mercedes">
+            </li>
+            <li><a href="https://google.com" id="google">Google</a></li>
+        </ul>
+    </div>
+
+</body>
+<script>
+    // not so good approach
+    // document.getElementById('bmw').onclick = function(){
+    //     alert("BMW Car is clicked/picked")
+    // }
+    
+    //first they were using attachEvent() and in jQuery - on methods to apply events
+    // the trending and good approach used in modern days
+    // is called as addEventListener() method
+
+    /*Important Events tha are Important are*/
+    // type events, timestamp, defaultPrevented
+    // target, toElement, srcElement, currentTarget
+    // clientX, clientY, screenX, screenY
+    // altkey, ctrlkey, shiftkey, keyCode
+
+    // document.getElementById('bmw').addEventListener("click", function(e){
+    //     console.log(e);
+    // }, false)
+
+    //Event Propagation
+    // 1. Event Bubbling: in this the flow goes from the inner element to the upper parent elements
+    // Also the 3rd parameter is kept as false, which is default 
+    // document.getElementById('images').addEventListener("click", function(e){
+    //     console.log("clicked on ul");
+    // }, false)
+    // // output:
+    // //clicked on ul
+    
+    // document.getElementById('bmw').addEventListener("click", function(e){
+    //     console.log("clicked on bmw");
+    //     // this will not allow element to bubble up
+    //      e.stopPropagation(); 
+    // }, false)
+    // output: here first comes the inner element then the parent i.e ul
+    //clicked on bmw
+    //clicked on ul
+
+    // +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    // 2. Event Capturing: in this the flow goes from the upper element to the inner parent elements
+    // Also the 3rd parameter is kept as true
+    // document.getElementById('images').addEventListener("click", function(e){
+    //     console.log("clicked on ul");
+    // }, true)
+    // // output
+    // // clicked on ul
+
+    // document.getElementById('bmw').addEventListener("click", function(e){
+    //     console.log("clicked on bmw");
+        
+    // }, true)
+    // // output
+    // // clicked on ul
+    // // clicked on bmw
+
+    // // To prevent default we use
+    // document.getElementById('google').addEventListener('click', function(e){
+    //     e.preventDefault();
+    //     e.stopPropagation();
+    //     console.log("google clicked");
+    // }, false)
+    // // output:
+    // // google clicked
+
+    // Practicality of Events
+    document.querySelector('#images').addEventListener('click', function(e){
+        // console.log(e.target);
+        // console.log(e.target.parentNode);//selects the parent which is now is list element
+        console.log(e.target.tagName);
+
+        if(e.target.tagName === 'IMG'){
+            console.log(e.target.id);
+            let removeIt = e.target.parentNode;
+            removeIt.remove();
+        }
+    })
+
+</script>
+</html>
