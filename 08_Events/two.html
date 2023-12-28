@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async SetTimeout and SetInterval</title>
+</head>
+<body>
+    <h1>Chai aur Code</h1>
+    <button id="stop">Stop</button>
+</body>
+<script>
+    // 1st way
+    // SET TIMEOUT FUNCTION
+
+    // setTimeout(function(){
+    //     console.log("Hitesh");
+    // }, 2000)
+
+    // 2nd way
+    // const sayMe = function(){
+    //     console.log("Thoufiq");
+    // }
+
+    // setTimeout(sayMe, 2000)
+
+    const changeText = function(){
+        document.querySelector('h1').innerHTML = "best JS series"
+    }
+
+    const changeMe = setTimeout(changeText, 2000)
+    
+    document.querySelector('#stop').addEventListener('click', function(e){
+        clearTimeout(changeMe)
+        console.log("STOPPED")
+    })
+</script>
+</html>

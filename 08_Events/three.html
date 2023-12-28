@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async SetTimeout and SetInterval</title>
+</head>
+<body>
+    <h1>Chai aur JavaScript</h1>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+
+</body>
+<script>
+    // SET INTERVAL FUNCTION/METHOD
+
+    const sayDate = function(str){
+        console.log("Thoufu", Date.now());
+    }
+
+    const interValid = setInterval(sayDate, 1000)
+
+    // This used clear the setInterval, just like clear Timeout
+    clearInterval(interValid)
+</script>
+</html>
