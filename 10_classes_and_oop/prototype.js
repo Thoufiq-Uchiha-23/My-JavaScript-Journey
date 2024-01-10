@@ -23,11 +23,16 @@ Array.prototype.heyThoufiq = function(){
 }
 
 // heroPower.thoufiq();
-myHeros.thoufiq();
-myHeros.heyThoufiq();
+// myHeros.thoufiq();
+// myHeros.heyThoufiq();
 // heroPower.heyThoufiq();
 
 // Inheritance
+
+const User = {
+    naem: "chai",
+    email: "chai@gmail.com"
+}
 
 const Teacher = {
     makeVideo: true
@@ -38,5 +43,27 @@ const TeachingSupport ={
 }
 
 const TASupport = {
-    makeAssignment: 'JS Ass'
+    makeAssignment: 'JS Assignment', 
+    fullTime: true,
+    // proto is just like spread operator which copies the data
+    __proto__: TeachingSupport
 }
+
+// Here inheriting properties from User to Teacher 
+Teacher.__proto__ = User;
+
+// Btw the above method using proto is Old Method
+// below is the new method
+
+// modern syntax
+Object.setPrototypeOf(TeachingSupport, Teacher)
+
+let anotherUsername = "ChaiAurCode     ";
+String.prototype.trueLength = function(){
+    console.log(`${this}`);
+    console.log(`True length is: ${this.trim().length}`);
+}
+
+anotherUsername.trueLength()
+"hitesh".trueLength()
+"iceTea".trueLength()
