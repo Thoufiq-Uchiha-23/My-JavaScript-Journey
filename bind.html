@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React</title>
+</head>
+<body>
+    <button>Button Clicked</button>
+</body>
+<script>
+    // we use bind as to also pass the properties of current class,
+    // which is not pass while living it default
+    // Here it is added on button querySelector,
+    // as it was not showing the properties/variables present inside
+    // on Web Console
+    // SYNTAX: this.function_name().bind(this)
+    class React{
+        constructor(){
+            this.library= "React";
+            this.server = "https://localhost:300"
+
+            // requirement
+
+            document.querySelector('button').addEventListener('click', this.handleClick.bind(this))
+        }
+
+        handleClick(){
+            console.log("button clicked");
+            console.log(this);
+        }
+        
+    }
+
+    // Creating an Object when page loads 
+    const app = new React();
+</script>
+</html>
