@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closure & Lexical Scoping with Biryani</title>
+</head>
+<body style="background-color: darkblue;">
+    <button id="orange">Orange</button>
+    <button id="green">Green</button>
+</body>
+<script>
+    // function init() {
+    //     let name = "Mozilla"; // name is a local variable created by init
+    //     function displayName() {
+    //         // displayName() is the inner function, that forms the closure
+    //         console.log(name); // use variable declared in the parent function
+    //     }
+    //     displayName();
+    // }
+    // init();
+
+
+    // +++++++++++++++++++++++++Lexical Scoping++++++++++++++++++++++++
+    /*
+        Definition:
+        the inner functn can have the access of the outer fuctn but
+        the outer function can't have the access of the inner functn
+    */
+
+    // function outer(){
+    //     let username = "thoufiq"
+    //     // console.log("OUTER", secret);//this line will throw error
+    //     // Reason: As parents are not allowed to take there things
+    //     function inner(){
+    //         // children can access things of there parents
+    //         let secret = "my123";
+    //         console.log("inner", username);
+    //     }
+    //     function innerTwo(){
+    //         console.log("innerTwo", username);
+    //         // console.log(secret);//siblings will not share there things
+    //     }
+    //     inner();
+    //     innerTwo();
+    // }
+    // outer()
+    // console.log("TOO OUTER", username);
+
+    // +++++++++++++++++++++Closures+++++++++++++++++++++++++
+    /*
+    Closure is nothing but returning the whole function, with it's scope,
+        and not just that it returns it's Lexical Scope also(means also returns
+         the parent/heirarchial function also)
+    */
+    function makeFunc() {
+        const name = "Mozilla";
+        function displayName() {
+            console.log(name);
+        }
+        return displayName;
+    }
+
+    const myFunc = makeFunc();
+    myFunc();
+    // OUTPUT: Mozilla
+
+</script>
+
+<script>
+    document.getElementById("orange").onclick = function(){
+        document.body.style.backgroundColor = 'orange'
+    }
+
+    document.getElementById("green").onclick = function(){
+        document.body.style.backgroundColor = 'green'
+    }
+
+    function clickHandler(color){
+        // document.body.style.backgroundColor = `${color}`
+
+        return function(){
+            document.body.style.backgroundColor = `${color}`
+        }
+    }
+
+    document.getElementById('orange').onclick = clickHandler('orange')
+    document.getElementById('green').onclick = clickHandler('green')
+</script>
+</html>
